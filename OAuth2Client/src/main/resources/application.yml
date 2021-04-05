@@ -1,0 +1,23 @@
+server:
+  port: 8100
+   
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+             token-uri: https://auth-service:8443/auth/realms/Demo/protocol/openid-connect/token
+        registration:
+          keycloak:
+            authorization-grant-type: client_credentials
+            client-id: demo-client
+            client-secret: ${DEMO-RS-CLIENT-SECRET}
+            scope: openid,profile,email
+            
+
+logging:
+  level:
+    '[de.legendlime.demo]': DEBUG
+    '[org.springframework.security]': DEBUG
+    '[org.springframework.security.oauth2]': DEBUG
