@@ -2,6 +2,10 @@ server:
   port: 8100
    
 spring:
+
+  application:
+    name: client
+
   security:
     oauth2:
       client:
@@ -15,9 +19,20 @@ spring:
             client-secret: ${DEMO-RS-CLIENT-SECRET}
             scope: openid,profile,email
             
+# Tracing configuration
+
+  sleuth:
+    sampler:
+      probability: 1.0
+    opentracing:
+      enabled: true
+
+  zipkin:
+    base-url: http://localhost:9411
 
 logging:
   level:
     '[de.legendlime.demo]': DEBUG
     '[org.springframework.security]': DEBUG
     '[org.springframework.security.oauth2]': DEBUG
+    '[anoop.h.webflux]': DEBUG
